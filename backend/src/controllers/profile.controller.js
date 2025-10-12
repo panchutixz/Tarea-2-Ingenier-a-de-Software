@@ -9,13 +9,24 @@ export function getPublicProfile(req, res) {
   });
 }
 
-export function getPrivateProfile(req, res) {
-  const user = req.user;
-
-  handleSuccess(res, 200, "Perfil privado obtenido exitosamente", {
-    message: `¡Hola, ${user.email}! Este es tu perfil privado. Solo tú puedes verlo.`,
-    userData: user,
-  });
+export async function getPrivateProfile(req, res) {
+  const userFromToken = req.user;
+  try {
+    const userRepository = AppDataSource.getRepository(User);
+    const user = await userRepository.findOneBy({ email: userFromToken.email });
+    if (!user) {
+      return handleErrorClient(res, 404, "Usuario no encontrado.");
+    }
+    handleSuccess(res, 200, "Perfil privado obtenido exitosamente", {
+      message: `¡Hola, ${user.email}! Este es tu perfil privado. Solo tú puedes verlo.`,
+      userData: {
+        email: user.email,
+        password: user.password
+      }
+    });
+  } catch (error) {
+    handleErrorServer(res, 500, "Error al obtener perfil privado", error.message);
+  }
 }
 
 export async function updatePrivateProfile(req, res) {

@@ -1,0 +1,25 @@
+
+.profile-header {
+    text-align: center;
+}
+
+.profile-content{
+    display: flex;
+    gap: 2rem;
+}
+
+.profile-info {
+    flex: 1;
+    padding: 1rem;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile-info p {
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+
