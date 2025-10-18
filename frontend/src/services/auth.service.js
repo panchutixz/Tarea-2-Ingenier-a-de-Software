@@ -1,4 +1,4 @@
-// ...existing code...
+
 export async function registerUser(email, password) {
     return await register({ email, password });
 }
