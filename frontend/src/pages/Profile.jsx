@@ -8,7 +8,7 @@ const Profile = () => {
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // Función para obtener el perfil
+
   const getProfileData = async () => {
     setLoading(true);
     const profileData = await fetchProfile();
@@ -16,12 +16,12 @@ const Profile = () => {
     setProfileData(profileData?.data || null);
   };
 
-  // Obtener perfil al montar el componente
+  
   useEffect(() => {
     getProfileData();
   }, []);
 
-  // Función para editar perfil
+
   const handleEditProfile = async () => {
     if (!profileData) return;
 
@@ -37,11 +37,11 @@ const Profile = () => {
 
     if (response) {
       alert(response.message || "Perfil actualizado correctamente");
-      getProfileData(); // recargar datos
+      getProfileData();
     }
   };
 
-  // Función para eliminar perfil
+
   const handleDeleteProfile = async () => {
     if (!profileData) return;
 
@@ -56,7 +56,7 @@ const Profile = () => {
 
     if (response) {
       alert(response.message || "Perfil eliminado correctamente");
-      setProfileData(null); // limpiar datos
+      setProfileData(null); 
     }
   };
 

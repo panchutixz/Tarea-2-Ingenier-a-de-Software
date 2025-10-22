@@ -5,9 +5,9 @@ const Home = () => {
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const [editing, setEditing] = useState(false); // Para mostrar formulario de edición
-  const [deleting, setDeleting] = useState(false); // Para mostrar confirmación de eliminación
-  const [formData, setFormData] = useState({ email: '', password: '' }); // Inputs de edición
+  const [editing, setEditing] = useState(false); 
+  const [deleting, setDeleting] = useState(false); 
+  const [formData, setFormData] = useState({ email: '', password: '' }); 
   const [statusMessage, setStatusMessage] = useState(null);
 
   const handleGetProfile = async () => {
@@ -25,7 +25,7 @@ const Home = () => {
           message: data.message,
           ...data.userData
         });
-        setFormData({ email: data.userData.email, password: '' }); // inicializar formulario
+        setFormData({ email: data.userData.email, password: '' }); 
       } else {
         setProfileData(data);
       }
@@ -43,7 +43,7 @@ const Home = () => {
     if (response) {
       setStatusMessage({ type: 'success', text: response.message || 'Perfil actualizado correctamente' });
       setEditing(false);
-      handleGetProfile(); // recargar datos
+      handleGetProfile(); 
     } else {
       setStatusMessage({ type: 'error', text: 'Error al actualizar perfil' });
     }
@@ -95,8 +95,6 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Botones Editar / Eliminar */}
               {!editing && !deleting && (
                 <div className="flex gap-4 mt-4 w-full max-w-md">
                   <button
@@ -113,8 +111,6 @@ const Home = () => {
                   </button>
                 </div>
               )}
-
-              {/* Formulario de edición */}
               {editing && (
                 <div className="w-full max-w-md bg-purple-50 p-4 rounded-xl flex flex-col gap-4 mt-4">
                   <input
@@ -149,8 +145,6 @@ const Home = () => {
                   </div>
                 </div>
               )}
-
-              {/* Confirmación de eliminación */}
               {deleting && (
                 <div className="w-full max-w-md bg-red-100 p-4 rounded-xl flex flex-col gap-4 mt-4">
                   <p className="text-red-700 font-semibold">¿Seguro que desea eliminar su perfil?</p>
@@ -172,8 +166,6 @@ const Home = () => {
                   </div>
                 </div>
               )}
-
-              {/* Mensaje de estado */}
               {statusMessage && (
                 <div
                   className={`w-full p-3 rounded-xl text-center font-semibold ${

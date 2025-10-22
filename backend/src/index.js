@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 // Configuración de CORS para permitir peticiones desde el frontend
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: true,
   credentials: true
 }));
 // Ruta principal de bienvenida
